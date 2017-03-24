@@ -35,6 +35,12 @@ Resultados-Futbol  API Doc:
 
 Go to test directory and run
 
+## TO-DO
+
+* Create connections with api
+* Check states of connections with api with
+* Validate data 
+
 
 ## Licence
 
