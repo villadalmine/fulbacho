@@ -46,6 +46,6 @@ See [LICENSE](LICENSE)
 
 ## Based on
 
-[scottjbarr/bitfinex](https://github.com/scottjbarr/bitfinex)
-[delta575/python-surbtc-api](https://github.com/delta575/python-surbtc-api)
+[scottjbarr/bitfinex](https://github.com/scottjbarr/bitfinex)\\
+[delta575/python-surbtc-api](https://github.com/delta575/python-surbtc-api)\\
 [architv/soccer-cli](https://github.com/architv/soccer-cli)
