@@ -35,6 +35,12 @@ Resultados-Futbol  API Doc:
 
 Go to test directory and run
 
+## TO-DO
+
+* Create connections with api
+* Check states of connections with api with
+* Validate data 
+
 
 ## Licence
 
@@ -47,5 +53,7 @@ See [LICENSE](LICENSE)
 ## Based on
 
 [scottjbarr/bitfinex](https://github.com/scottjbarr/bitfinex)
+
 [delta575/python-surbtc-api](https://github.com/delta575/python-surbtc-api)
+
 [architv/soccer-cli](https://github.com/architv/soccer-cli)
