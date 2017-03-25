@@ -1,8 +1,8 @@
 class Server:
-	def __init__(self, protocol, host, version=None):
+	def __init__(self, protocol, host, version=None ):
 		url = '{0:s}://{1:s}'.format(protocol, host)
 		if version:
-			url = '{0:s}/{1:s}'.format(url, version)
+			url = '{0:s}/{1:s}'.format( url )
 
 		self.PROTOCOL = protocol
 		self.HOST = host

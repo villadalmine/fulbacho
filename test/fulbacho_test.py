@@ -4,12 +4,11 @@ import unittest
 import fulbacho
 from fulbacho import fulbacho
 from fulbacho.fulbacho import Fulbacho
-APITOKEN = "a"
 
 class FulbachoGoodConnections(unittest.TestCase):
 
     def setUp(self):
-        self.client = Fulbacho( APITOKEN )
+        self.client = Fulbacho()
 
     def test_instantiate_client(self):
         self.assertIsInstance(self.client, Fulbacho)
