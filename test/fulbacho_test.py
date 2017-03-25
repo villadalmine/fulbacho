@@ -5,6 +5,13 @@ import fulbacho
 from fulbacho import fulbacho
 from fulbacho.fulbacho import Fulbacho
 
+import unittest
+# pip
+# local
+import fulbacho
+from fulbacho import fulbacho
+from fulbacho.fulbacho import Fulbacho
+
 class FulbachoGoodConnections(unittest.TestCase):
 
     def setUp(self):
