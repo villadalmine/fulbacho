@@ -17,13 +17,28 @@ class Server:
 		host = self.host
 		url = '{0:s}://{1:s}'.format(protocol, host)
 		self.url = url
-
+	def getUrl(self):
+		return self.url
+	def setHost(self, host):
+		self.host = host
+	def getHost(self):
+		return self.host
+	def setProtocol(self, protocol):
+		self.protocol = protocol
+	def getProtocol(self):
+		return self.protocol
+	def setVersion(self, version):
+		self.version = version
+	def getVersion(self):
+		return self.version
 
 
 class Client(object):
 	def __init__(self, server: Server, timeout=30):
 		self.server = server
 		self.timeout = timeout
+		self.apiquery = ''
+		self.apitoken = ''
 	def get_url_status(url):
 		"""Handles api.football-data.org requests"""
 		try:
@@ -67,6 +82,14 @@ class Client(object):
 	            msg = ('APITOKEN is needed! in the correct place, you need it here ' + config)
 	            log_error(msg)
 	            raise ValueError(msg)
+	def setApiQuery(self, query):
+		self.apiquery = query
+	def getApiQuery(self):
+		return self.apiquery
+	def setApiToken(self, apitoken):
+		self.apitoken = apitoken
+	def getApiToken(self):
+		return self.apitoken
 
 #	def reloadConfig(pathFileName=None, fileName=None):
 #		config = configparser.ConfigParser()
