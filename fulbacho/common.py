@@ -1,6 +1,7 @@
 import logging
 import os
 import requests
+import configparser
 
 def log_message(msg):
     msg = "Fulbacho API: " + msg
@@ -10,6 +11,7 @@ def log_error(msg):
     logging.error(log_message(msg))
     return log_message(msg)
 
+"""
 def check_keys():
     try:
         apitoken = os.environ['FULBACHO_API_TOKEN']
@@ -27,28 +29,22 @@ def check_keys():
             msg = 'APITOKEN is needed!'
             log_error(msg)
             raise ValueError(msg)
+"""
 
-def get_url_status(url):
-    """Handles api.football-data.org requests"""
-    req = requests.get( url )
-    if req.status_code == requests.codes.ok:
-        if not req.text == "info-not-allowed-request-for-api-account-type":
-            if not req.text == "no-version":
-                if req.json:
-                    print ( "a" )
-                else:
-                    msg = 'Response is not a Json!'
-                    log_error(msg)
-                    raise ValueError(msg)
-            else:
-                msg = 'Response is a no-version!'
-                log_error(msg)
-                raise ValueError(msg)
-        else:
-           msg = 'Response is info-not-allowed-request-for-api-account-type'
-           log_error(msg)
-           raise ValueError(msg)
+def configure( directory=None ):
+    config = configparser.ConfigParser()
+    config['SERVER'] = { 'HOST': 'apiclient.resultados-futbol.com/scripts/api/api.php?', 'PROTOCOL': 'http', 'TEST_HOST': 'apiclient.resultados-futbol.com/scripts/api/api.php?', 'VERSION': ''}
+    config['CLIENT'] = { 'TIMEOUT': '' }
+    if directory is None:
+        cwd = os.getcwd()
+        config['FULBACHO'] = { 'APIQUERY': '&format=json&req=leagues', 'ENVOSVAR': 'FULBACHO_API_TOKEN', 'FILENAMEKEY': '.env', 'PATHNAMEKEY': cwd }
+        with open(cwd+'/fulbacho.ini', 'w') as configfile:
+            config.write(configfile)
     else:
-        msg = 'Response is not 200 OK!'
-        log_error(msg)
-        raise ValueError(msg)
+        home = os.path.dirname(directory)
+        real_path = "fulbacho.ini"
+        abs_file_path = os.path.join(home, real_path)
+        config['FULBACHO'] = { 'APIQUERY': '&format=json&req=leagues', 'ENVOSVAR': 'FULBACHO_API_TOKEN', 'FILENAMEKEY': '.env', 'PATHNAMEKEY': directory }
+        with open(abs_file_path, 'w') as configfile:
+            config.write(configfile)
+    return config

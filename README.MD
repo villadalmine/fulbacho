@@ -12,6 +12,7 @@ Install the libs
     pip install -r requirements.txt
 
 Rename .env.example > .env
+When you start it the app create a file called fulbacho.ini
 
 ## Installation
 
@@ -24,8 +25,9 @@ Setup (APITOKEN requiered):
     import fulbacho
     from fulbacho import fulbacho
     from fulbacho.fulbacho import Fulbacho
-    client = Fulbacho("apitoken")
-
+    futbol = Fulbacho()
+    futbol.initialize_config()
+    futbol.get_url_status()
 
 
 Resultados-Futbol  API Doc:
@@ -37,10 +39,8 @@ Go to test directory and run
 
 ## TO-DO
 
-* Create connections with api
-* Check states of connections with api with
-* Validate data 
-
+* RE WRITE CHECK API KEYS
+* CHECK HOW TO RELOAD CONFIG fulbacho.ini
 
 ## Licence
 
