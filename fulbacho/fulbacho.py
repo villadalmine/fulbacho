@@ -46,7 +46,3 @@ class Fulbacho(Client):
             msg = ("Key is not present")
             log_error(msg)
             raise ValueError(msg)
-        #self.apitoken = check_keys()
-
-
-        """ FALTA CHEQUEAR LA FUNCION DE CHECKKEYS"""

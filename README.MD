@@ -12,7 +12,9 @@ Install the libs
     pip install -r requirements.txt
 
 Rename .env.example > .env
+
 The File fulbacho.ini will be created at the initilization config.
+
 When you start it the app create a file called fulbacho.ini
 
 ## Installation
@@ -40,7 +42,6 @@ Go to test directory and run
 
 ## TO-DO
 
-* RE WRITE CHECK API KEYS
 * CHECK HOW TO RELOAD CONFIG fulbacho.ini
 
 ## Licence
