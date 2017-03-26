@@ -1,0 +1,14 @@
+[SERVER]
+host = apiclient.resultados-futbol.com/scripts/api/api.php?
+protocol = http
+test_host = apiclient.resultados-futbol.com/scripts/api/api.php?
+version =
+
+[CLIENT]
+timeout =
+
+[FULBACHO]
+apiquery = &format=json&req=leagues
+envosvar = FULBACHO_API_TOKEN
+filenamekey = .env
+pathnamekey = /Users/villadalmine/violeta/repos/rino/dalmine/fulbacho

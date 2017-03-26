@@ -1,17 +1,11 @@
 #local
 from .connections import Client, Server
-from .common import configure
+from .common import configure, log_message, log_error
 #pip
-configparser
+import configparser
+import os
 # API server
-PROTOCOL = 'http'
-HOST = 'apiclient.resultados-futbol.com/scripts/api/api.php?'
-TEST_HOST = 'apiclient.resultados-futbol.com/scripts/api/api.php?'
-VERSION = ''
-APIQUERY = '&format=json&req=leagues'
-ENVOSVAR =
-FILENAMEKEY =
-PATHNAMEKEY =
+
 
 
 class Fulbacho(Client):
@@ -38,5 +32,21 @@ class Fulbacho(Client):
         version = config['SERVER']['VERSION']
         self.server.version = version
         self.apiquery = config['FULBACHO']['APIQUERY']
-        self.apitoken = check_keys()
+        envOsVar =  config['FULBACHO']['ENVOSVAR']
+        fileNameKey = config['FULBACHO']['FILENAMEKEY']
+        pathNameKey  = config['FULBACHO']['PATHNAMEKEY']
+        result = Client.check_keys(envOsVar, fileNameKey, pathNameKey)
+        if result is True:
+            self.apitoken = Client.config_keys(envOsVar, fileNameKey, pathNameKey)
+            initilization = self.get_url_status()
+            if initilization is True:
+                message = log_message ("The API is working")
+                return message
+        else:
+            msg = ("Key is not present")
+            log_error(msg)
+            raise ValueError(msg)
+        #self.apitoken = check_keys()
+
+
         """ FALTA CHEQUEAR LA FUNCION DE CHECKKEYS"""

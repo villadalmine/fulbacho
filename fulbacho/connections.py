@@ -1,5 +1,5 @@
 from .common import log_message, log_error
-
+import os, requests
 class Server:
 	def __init__(self, protocol=None, host=None, version=None ):
 		if protocol is None and host is None:
@@ -64,17 +64,16 @@ class Client(object):
 	                    apitoken = key.replace('\n','')
 	                    return apitoken
 	        else:
-	            msg = 'APITOKEN is needed!'
+	            msg = ('APITOKEN is needed! in the correct place, you need it here ' + config)
 	            log_error(msg)
 	            raise ValueError(msg)
-				"""
-	def reloadConfig(pathFileName=None, fileName=None):
-		config = configparser.ConfigParser()
-		if pathFileName is None and fileName is None:
-				cwd = os.getcwd()
-				real_path = "fulbacho.ini"
-				abs_file_path = os.path.join(cwd, real_path)
-			if config.read(abs_file_path) != []:
-				"""PENSAR COMO HACER QUE RELEA LA CONFIG"""
-				return True
-"""
+
+#	def reloadConfig(pathFileName=None, fileName=None):
+#		config = configparser.ConfigParser()
+#		if pathFileName is None and fileName is None:
+				#cwd = os.getcwd()
+#				real_path = "fulbacho.ini"
+#				abs_file_path = os.path.join(cwd, real_path)
+#			if config.read(abs_file_path) != []:
+#				"""PENSAR COMO HACER QUE RELEA LA CONFIG"""
+#				return True """

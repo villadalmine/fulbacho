@@ -12,6 +12,7 @@ Install the libs
     pip install -r requirements.txt
 
 Rename .env.example > .env
+The File fulbacho.ini will be created at the initilization config.
 When you start it the app create a file called fulbacho.ini
 
 ## Installation
@@ -27,7 +28,7 @@ Setup (APITOKEN requiered):
     from fulbacho.fulbacho import Fulbacho
     futbol = Fulbacho()
     futbol.initialize_config()
-    futbol.get_url_status()
+
 
 
 Resultados-Futbol  API Doc:
