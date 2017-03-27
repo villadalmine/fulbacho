@@ -7,6 +7,12 @@ version =
 [CLIENT]
 timeout =
 
+[LEAGUES]
+primerabnacional = 192
+primerachile = 49
+primeraven = 113
+primerauy = 46
+
 [FULBACHO]
 apiquery = &format=json&req=leagues
 envosvar = FULBACHO_API_TOKEN
