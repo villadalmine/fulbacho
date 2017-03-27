@@ -2,9 +2,14 @@
 import os, requests, json
 
 class Liga:
-    def __init__(self, json=None ):
+    def __init__(self, json=None, name=None ):
             self.json = json
+            self.name = name
     def getJson(self):
         return self.json
     def setJson(self, json):
         self.json = json
+    def getName(self):
+        return self.name
+    def setName(self, name):
+        self.name = nme

@@ -40,15 +40,22 @@ class Fulbacho(Client):
         id_league = config['FULBACHO']['PATHNAMEKEY']
         result = Client.check_keys(envOsVar, fileNameKey, pathNameKey)
         idList = []
+        nameList = []
         for key in config['LEAGUES']:
             for otra in config['LEAGUES'][key]:
                 id = config['LEAGUES'][key]
+            nameList.append(key)
             idList.append(id)
+        idAndName = {}
+        n = 0
+        for i in idList:
+            idAndName[i] = nameList[n]
+            n = n + 1
         if result is True:
             apitoken = Client.config_keys(envOsVar, fileNameKey, pathNameKey)
             self.setApiToken(apitoken)
             initilization = self.get_url_status()
-            initialization_league = self.addLiga(idList)
+            initialization_league = self.addLiga(idAndName)
             if initilization is True and initialization_league is True:
                 message = log_message ("The API test is working and all Leagues was added")
                 return message
@@ -66,10 +73,13 @@ class Fulbacho(Client):
                 url = self.getCustomUrl(query)
                 req = requests.get ( url )
                 urlLeague = req.json()
-                self.leagues.append(Liga(urlLeague))
+                name = id[item]
+                self.leagues.append(Liga(urlLeague, name))
         return True
     def getCustomUrl(self, query):
         base_url = self.server.getUrl()
         apitoken = self.getApiToken()
         url = (base_url+"&key="+apitoken+query)
         return url
+    def initialize_leagues(self):
+        """Inicializar las ligas con sus equipos"

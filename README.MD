@@ -46,8 +46,9 @@ Go to test directory and run
 
 * CHECK addLiga in order to read year and query from fulbacho.ini
 
-* Set and get to LIGA
+* Set and gettter to LIGA
 
+* Initialization of all configured leagues, define which date show
 ## Licence
 
 The MIT License (MIT)
