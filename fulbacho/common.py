@@ -15,6 +15,7 @@ def configure( directory=None ):
     config = configparser.ConfigParser()
     config['SERVER'] = { 'HOST': 'apiclient.resultados-futbol.com/scripts/api/api.php?', 'PROTOCOL': 'http', 'TEST_HOST': 'apiclient.resultados-futbol.com/scripts/api/api.php?', 'VERSION': ''}
     config['CLIENT'] = { 'TIMEOUT': '' }
+    config['LEAGUES'] = { 'PRIMERABNACIONAL': '192', 'PRIMERACHILE': '49', 'PRIMERAVEN': '113', 'PRIMERAUY': '46'}
     if directory is None:
         cwd = os.getcwd()
         config['FULBACHO'] = { 'APIQUERY': '&format=json&req=leagues', 'ENVOSVAR': 'FULBACHO_API_TOKEN', 'FILENAMEKEY': '.env', 'PATHNAMEKEY': cwd }

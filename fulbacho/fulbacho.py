@@ -1,5 +1,6 @@
 #local
 from .connections import Client, Server
+from .liga import Liga
 from .common import configure, log_message, log_error
 #pip
 import configparser
@@ -36,15 +37,39 @@ class Fulbacho(Client):
         envOsVar =  config['FULBACHO']['ENVOSVAR']
         fileNameKey = config['FULBACHO']['FILENAMEKEY']
         pathNameKey  = config['FULBACHO']['PATHNAMEKEY']
+        id_league = config['FULBACHO']['PATHNAMEKEY']
         result = Client.check_keys(envOsVar, fileNameKey, pathNameKey)
+        idList = []
+        for key in config['LEAGUES']:
+            for otra in config['LEAGUES'][key]:
+                id = config['LEAGUES'][key]
+            idList.append(id)
         if result is True:
             apitoken = Client.config_keys(envOsVar, fileNameKey, pathNameKey)
             self.setApiToken(apitoken)
             initilization = self.get_url_status()
-            if initilization is True:
-                message = log_message ("The API is working")
+            initialization_league = self.addLiga(idList)
+            if initilization is True and initialization_league is True:
+                message = log_message ("The API test is working and all Leagues was added")
                 return message
         else:
             msg = ("Key is not present")
             log_error(msg)
             raise ValueError(msg)
+    def addLiga(self, id):
+        """Parametrizar el año y url de la liga desde el fulbacho.ini"""
+        year = 2017
+        for item in id:
+            query = "&tz=America/Buenos_Aires&format=json&lang=es&clang=es&code=ar&req=tables&league="+str(item)+"&group=all&country=ar&year="+str(year)
+            urlStatus = self.get_url_status(query)
+            if urlStatus is True:
+                url = self.getCustomUrl(query)
+                req = requests.get ( url )
+                urlLeague = req.json()
+                self.leagues.append(Liga(urlLeague))
+        return True
+    def getCustomUrl(self, query):
+        base_url = self.server.getUrl()
+        apitoken = self.getApiToken()
+        url = (base_url+"&key="+apitoken+query)
+        return url

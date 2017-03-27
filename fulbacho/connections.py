@@ -39,6 +39,7 @@ class Client(object):
 		self.timeout = timeout
 		self.apiquery = ''
 		self.apitoken = ''
+		self.leagues = []
 	def get_url_status(url):
 		"""Handles api.football-data.org requests"""
 		try:
