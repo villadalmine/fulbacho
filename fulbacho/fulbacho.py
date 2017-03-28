@@ -38,6 +38,7 @@ class Fulbacho(Client):
         fileNameKey = config['FULBACHO']['FILENAMEKEY']
         pathNameKey  = config['FULBACHO']['PATHNAMEKEY']
         id_league = config['FULBACHO']['PATHNAMEKEY']
+        year_league = config['FULBACHO']['YEAR']
         result = Client.check_keys(envOsVar, fileNameKey, pathNameKey)
         idList = []
         nameList = []
@@ -55,7 +56,7 @@ class Fulbacho(Client):
             apitoken = Client.config_keys(envOsVar, fileNameKey, pathNameKey)
             self.setApiToken(apitoken)
             initilization = self.get_url_status()
-            initialization_league = self.addLiga(idAndName)
+            initialization_league = self.addLiga(idAndName, year_league)
             if initilization is True and initialization_league is True:
                 message = log_message ("The API test is working and all Leagues was added")
                 return message
@@ -63,18 +64,17 @@ class Fulbacho(Client):
             msg = ("Key is not present")
             log_error(msg)
             raise ValueError(msg)
-    def addLiga(self, id):
-        """Parametrizar el año y url de la liga desde el fulbacho.ini"""
-        year = 2017
+    def addLiga(self, id, year):
+        """The query is static because it is the same for all leagues"""
         for item in id:
-            query = "&tz=America/Buenos_Aires&format=json&lang=es&clang=es&code=ar&req=tables&league="+str(item)+"&group=all&country=ar&year="+str(year)
+            query = "&tz=America/Buenos_Aires&format=json&lang=es&clang=es&code=ar&req=tables&league="+str(item)+"&group=all&country=ar&year="+year
             urlStatus = self.get_url_status(query)
             if urlStatus is True:
                 url = self.getCustomUrl(query)
                 req = requests.get ( url )
                 urlLeague = req.json()
                 name = id[item]
-                self.leagues.append(Liga(urlLeague, name))
+                self.leagues.append(FulbachoLiga(urlLeague, name))
         return True
     def getCustomUrl(self, query):
         base_url = self.server.getUrl()
@@ -82,4 +82,9 @@ class Fulbacho(Client):
         url = (base_url+"&key="+apitoken+query)
         return url
     def initialize_leagues(self):
-        """Inicializar las ligas con sus equipos"
+        """Inicializar las ligas con sus equipos"""
+
+
+class FulbachoLiga(Liga):
+    def __init__(self, json=None, name=None ):
+        Liga.__init__(self, json, name)

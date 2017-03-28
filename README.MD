@@ -44,8 +44,6 @@ Go to test directory and run
 
 * CHECK HOW TO RELOAD CONFIG fulbacho.ini
 
-* CHECK addLiga in order to read year and query from fulbacho.ini
-
 * Set and gettter to LIGA
 
 * Initialization of all configured leagues, define which date show

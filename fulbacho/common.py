@@ -18,14 +18,14 @@ def configure( directory=None ):
     config['LEAGUES'] = { 'PRIMERABNACIONAL': '192', 'PRIMERACHILE': '49', 'PRIMERAVEN': '113', 'PRIMERAUY': '46', 'Primera División Argentina': '675'}
     if directory is None:
         cwd = os.getcwd()
-        config['FULBACHO'] = { 'APIQUERY': '&format=json&req=leagues', 'ENVOSVAR': 'FULBACHO_API_TOKEN', 'FILENAMEKEY': '.env', 'PATHNAMEKEY': cwd }
+        config['FULBACHO'] = { 'APIQUERY': '&format=json&req=leagues', 'ENVOSVAR': 'FULBACHO_API_TOKEN', 'FILENAMEKEY': '.env', 'PATHNAMEKEY': cwd, 'YEAR': "2017" }
         with open(cwd+'/fulbacho.ini', 'w') as configfile:
             config.write(configfile)
     else:
         home = os.path.dirname(directory)
         real_path = "fulbacho.ini"
         abs_file_path = os.path.join(home, real_path)
-        config['FULBACHO'] = { 'APIQUERY': '&format=json&req=leagues', 'ENVOSVAR': 'FULBACHO_API_TOKEN', 'FILENAMEKEY': '.env', 'PATHNAMEKEY': directory }
+        config['FULBACHO'] = { 'APIQUERY': '&format=json&req=leagues', 'ENVOSVAR': 'FULBACHO_API_TOKEN', 'FILENAMEKEY': '.env', 'PATHNAMEKEY': directory, 'YEAR': "2017"  }
         with open(abs_file_path, 'w') as configfile:
             config.write(configfile)
     return config
