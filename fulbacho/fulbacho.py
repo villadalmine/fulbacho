@@ -45,8 +45,13 @@ class Fulbacho(Client):
         for key in config['LEAGUES']:
             for otra in config['LEAGUES'][key]:
                 id = config['LEAGUES'][key]
-            nameList.append(key)
-            idList.append(id)
+            if "*" in key:
+                country = key.replace("*", "")
+                nameList.append(country)
+                idList.append(id)
+            else:
+                nameList.append(key)
+                idList.append(id)
         idAndName = {}
         n = 0
         for i in idList:
@@ -73,8 +78,9 @@ class Fulbacho(Client):
                 url = self.getCustomUrl(query)
                 req = requests.get ( url )
                 urlLeague = req.json()
-                name = id[item]
-                self.leagues.append(FulbachoLiga(urlLeague, name))
+                countryName = id[item]
+                idLeague = item
+                self.leagues.append(FulbachoLiga(urlLeague, countryName, idLeague, year))
         return True
     def getCustomUrl(self, query):
         base_url = self.server.getUrl()
@@ -88,12 +94,12 @@ class Fulbacho(Client):
     def getListOfLeagues(self):
         name = ""
         for i in range(self.getQtyLeagues()):
-            name = name + " " + self.leagues[i].getName()
+            name = name + " " + self.leagues[i].getCountryName() + " Id: "+ self.leagues[i].getidLeague()
             #print (self.leagues[i].getName())
         return name
     def isName(self, name):
         for i in range(self.getQtyLeagues()):
-            if self.leagues[i].getName() == name:
+            if self.leagues[i].getCountryName == name:
                 return True
             else:
                 return False
@@ -102,10 +108,27 @@ class Fulbacho(Client):
             return "The Name " + name + " is a valid league"
         else:
             return "The Name " + name + " is not a valid load league"
-
+            """"
+    def setAttrOfLeagues(self, query=None):
+        base_url = self.server.getUrl()
+        if query is None:
+            api_query = self.getApiQuery()
+        else:
+            api_query = query
+        apitoken = self.getApiToken()
+        url = (base_url+"&key="+apitoken+api_query)
+        status_url = Client.get_url_status(url)
+        if status_url is True:
+            req = requests.get ( url )
+            for i in range(len(req.json()["category"]["leagues"]["Argentina"])):
+                req.json()["category"]["leagues"]["Argentina"][0]
+            return status_url
+        else:
+            return "League can not be configured because query api is not ok" + base_url + "token" + api_query
+"""
 
 class FulbachoLiga(Liga):
-    def __init__(self, json=None, name=None ):
-        Liga.__init__(self, json, name)
+    def __init__(self, json=None, countryName=None, idLeague=None,  year=None, matches=None,):
+        Liga.__init__(self, json, countryName, idLeague, year )
     def getLeague(self, name=None):
         """TESTING"""

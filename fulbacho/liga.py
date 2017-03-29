@@ -2,16 +2,32 @@
 import os, requests, json
 
 class Liga:
-    def __init__(self, json=None, name=None ):
+    def __init__(self, json=None, countryName=None, idLeague=None, year=None, matches=None ):
             self.json = json
-            self.name = name
+            self.countryName = countryName
+            self.idLeague = idLeague
+            self.matches = matches
+            self.year = year
+            self.leagueName = ""
     def getJson(self):
         return self.json
     def setJson(self, json):
         self.json = json
-    def getName(self):
-        return self.name
-    def setName(self, name):
-        self.name = nme
+    def getCountryName(self):
+        return self.countryName
+    def setCountryName(self, countryName):
+        self.countryName = countryName
     def getLeague(self, name=None):
         """TESTING"""
+    def getYear(self):
+        return self.year
+    def setYear(self, year):
+        self.year = year
+    def getmatches(self):
+        return self.matches
+    def setmatches(self, matches):
+        self.json = matches
+    def getidLeague(self):
+        return self.idLeague
+    def setIdLeague(self, idLeague):
+        self.idLeague = idLeague

@@ -44,7 +44,9 @@ Go to test directory and run
 
 * CHECK HOW TO RELOAD CONFIG fulbacho.ini
 
-* Initialization of all configured leagues, define which date show
+* Initialize league in fulbacho, after initialize all config for class, create a method to read the json loaded in each league in order to save name, matches,
+
+* check the method checkName, need to be used with a name of league and not with name of country
 
 ## Licence
 
