@@ -13,3 +13,5 @@ class Liga:
         return self.name
     def setName(self, name):
         self.name = nme
+    def getLeague(self, name=None):
+        """TESTING"""

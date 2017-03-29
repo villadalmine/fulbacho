@@ -44,9 +44,8 @@ Go to test directory and run
 
 * CHECK HOW TO RELOAD CONFIG fulbacho.ini
 
-* Set and gettter to LIGA
-
 * Initialization of all configured leagues, define which date show
+
 ## Licence
 
 The MIT License (MIT)

@@ -83,8 +83,29 @@ class Fulbacho(Client):
         return url
     def initialize_leagues(self):
         """Inicializar las ligas con sus equipos"""
+    def getQtyLeagues(self):
+        return len(self.leagues)
+    def getListOfLeagues(self):
+        name = ""
+        for i in range(self.getQtyLeagues()):
+            name = name + " " + self.leagues[i].getName()
+            #print (self.leagues[i].getName())
+        return name
+    def isName(self, name):
+        for i in range(self.getQtyLeagues()):
+            if self.leagues[i].getName() == name:
+                return True
+            else:
+                return False
+    def checkName(self, name):
+        if self.isName(name) is True:
+            return "The Name " + name + " is a valid league"
+        else:
+            return "The Name " + name + " is not a valid load league"
 
 
 class FulbachoLiga(Liga):
     def __init__(self, json=None, name=None ):
         Liga.__init__(self, json, name)
+    def getLeague(self, name=None):
+        """TESTING"""
