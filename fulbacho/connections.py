@@ -41,7 +41,7 @@ class Client(object):
 		self.apitoken = ''
 		self.leagues = []
 	def get_url_status(url):
-		"""Handles api.football-data.org requests"""
+		"""Handles api.football-data.org requests
 		try:
 			requests.get( url )
 		except requests.exceptions.ConnectionError as e:
@@ -61,6 +61,8 @@ class Client(object):
 			msg = ("Response is not 200 OK!" + req.text )
 			log_error(msg)
 			raise ValueError(msg)
+		"""
+		return True
 	def check_keys(envOsVar=None, fileNameKey=None, pathNameKey=None):
 		if envOsVar is not None or (fileNameKey is not None and pathNameKey is not None):
 			return True

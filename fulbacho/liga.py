@@ -2,13 +2,13 @@
 import os, requests, json
 
 class Liga:
-    def __init__(self, json=None, countryName=None, idLeague=None, year=None, matches=None ):
+    def __init__(self, json=None, countryName=None, idLeague=None, year=None, leagueAttr=None, matches=None ):
             self.json = json
             self.countryName = countryName
             self.idLeague = idLeague
             self.matches = matches
             self.year = year
-            self.leagueName = ""
+            self.leagueAttr = leagueAttr
     def getJson(self):
         return self.json
     def setJson(self, json):
@@ -23,11 +23,19 @@ class Liga:
         return self.year
     def setYear(self, year):
         self.year = year
-    def getmatches(self):
+    def getMatches(self):
         return self.matches
-    def setmatches(self, matches):
+    def setMatches(self, matches):
         self.json = matches
-    def getidLeague(self):
+    def getIdLeague(self):
         return self.idLeague
     def setIdLeague(self, idLeague):
         self.idLeague = idLeague
+    def getLeagueName(self):
+        return self.leagueName
+    def setLeagueName(self, leagueName):
+        self.leagueName = leagueName
+    def getLeagueAttr(self):
+        return self.leagueAttr
+    def setLeagueAttr(self, leagueAttr):
+        self.leagueAttr = leagueAttr

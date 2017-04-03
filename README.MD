@@ -42,11 +42,14 @@ Go to test directory and run
 
 ## TO-DO
 
+--- IMPORTANT ---
 * CHECK HOW TO RELOAD CONFIG fulbacho.ini
 
-* Initialize league in fulbacho, after initialize all config for class, create a method to read the json loaded in each league in order to save name, matches,
+* Function get_url_status neet to be checked because one previous error on the api was saved in headers of response and faill all.
 
-* check the method checkName, need to be used with a name of league and not with name of country
+--- TO INTEGRATE WITH BOT ---
+
+* Make a function to show all data of a specific League
 
 ## Licence
 
