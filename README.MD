@@ -30,7 +30,12 @@ Setup (APITOKEN requiered):
     from fulbacho.fulbacho import Fulbacho
     futbol = Fulbacho()
     futbol.initialize_config()
-
+    #List loaded leagues
+    fulbol.getListOfLeagues()
+    #Get info of a country
+    futbol.getLeaguesInfo("Argentina")
+    #Get info of a league
+    futbol.getInfoLeague("33424")
 
 
 Resultados-Futbol  API Doc:

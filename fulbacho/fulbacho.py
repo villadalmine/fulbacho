@@ -111,12 +111,55 @@ class Fulbacho(Client):
             name = name + " League: " + liga + " Country: "+ country
             #print (self.leagues[i].getName())
         return name
-    def isName(self, name):
+    def isCountryName(self, name):
         for i in range(self.getQtyLeagues()):
-            if self.leagues[i].getCountryName == name:
+            country = self.leagues[i].getLeagueCountry()
+            if country == name:
+                status = True
                 return True
             else:
-                return False
+                status = False
+        if status is False:
+            return False
+    def getLeaguesInfo(self, name):
+        ligaName = ""
+        if self.isCountryName(name) is True:
+            for i in range(self.getQtyLeagues()):
+                country = self.leagues[i].getLeagueCountry()
+                if country == name:
+                    liga = self.leagues[i].getNameLeague()
+                    country = self.leagues[i].getLeagueCountry()
+                    leagueId = self.leagues[i].getLeagueId()
+                    ligaName = ligaName + " League: " + liga + " Country: "+ country + " League Id: " + leagueId
+            return ligaName
+        else:
+            return False
+    def isId(self, id):
+        for i in range(self.getQtyLeagues()):
+            leagueId = self.leagues[i].getLeagueId()
+            if leagueId == id:
+                status = True
+                return True
+            else:
+                status = False
+        if status is False:
+            return False
+    def getInfoLeague(self, id):
+        ligaName = ""
+        if self.isId(id) is True:
+            for i in range(self.getQtyLeagues()):
+                leagueId = self.leagues[i].getLeagueId()
+                if leagueId == id:
+                    liga = self.leagues[i].getNameLeague()
+                    country = self.leagues[i].getLeagueCountry()
+                    leagueId = self.leagues[i].getLeagueId()
+                    matches = self.leagues[i].getTotalMatches()
+                    currentMatches = self.leagues[i].getCurrentMatches()
+                    year = self.leagues[i].getLeagueYear()
+                    ligaName =  "Year: " + year + " League Name: " + liga + " Matches : " + matches + " Played: " + currentMatches
+            return ligaName
+        else:
+            return False
     def checkName(self, name):
         if self.isName(name) is True:
             return "The Name " + name + " is a valid league"
@@ -151,13 +194,17 @@ class FulbachoLiga(Liga):
     def __init__(self, json=None, countryName=None, idLeague=None,  year=None, leagueAttr=None, matches=None,):
         Liga.__init__(self, json, countryName, idLeague, year, leagueAttr )
     def getCurrentMatches(self):
-        return self.getLeagueAttr()['current_rounds']
+        return self.getLeagueAttr()['current_round']
     def getTotalMatches(self):
         return self.getLeagueAttr()['total_rounds']
     def getNameLeague(self):
         return self.getLeagueAttr()['name']
     def getLeagueCountry(self):
         return self.getLeagueAttr()['country']
+    def getLeagueId(self):
+        return self.getLeagueAttr()['league_id']
+    def getLeagueYear(self):
+        return self.getLeagueAttr()['year']
         """
        def setAttrOfLeagues(self, query=None):
            base_url = self.server.getUrl()
