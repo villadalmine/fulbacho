@@ -31,7 +31,7 @@ Setup (APITOKEN requiered):
     futbol = Fulbacho()
     futbol.initialize_config()
     #List loaded leagues
-    fulbol.getListOfLeagues()
+    futbol.getListOfLeagues()
     #Get info of a country
     futbol.getLeaguesInfo("Argentina")
     #Get info of a league

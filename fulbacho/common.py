@@ -30,5 +30,4 @@ def configure( directory=None ):
         with open(abs_file_path, 'w') as configfile:
             config.write(configfile)
     return config
-format=&req=categories&filter=leagues&country=ar
 #format=json&req=leagues
