@@ -28,6 +28,10 @@ Setup (APITOKEN requiered):
     import fulbacho
     from fulbacho import fulbacho
     from fulbacho.fulbacho import Fulbacho
+    from fulbacho.fulbacho import FulbachoLiga
+    from fulbacho.liga import Liga
+    from fulbacho.common import configure, log_message, log_error
+    from fulbacho.connections import Client, Server
     futbol = Fulbacho()
     futbol.initialize_config()
     #List loaded leagues
