@@ -1,14 +1,16 @@
 #http://apiclient.resultados-futbol.com/scripts/api/api.php?key=&tz=America/Buenos_Aires&format=json&lang=es&clang=es&code=ar&req=tables&league=192&group=all&country=ar&year=2017'
 import os, requests, json
+from datetime import datetime, date
 
 class Liga:
-    def __init__(self, json=None, countryName=None, idLeague=None, year=None, leagueAttr=None, matches=None ):
+    def __init__(self, json=None, countryName=None, idLeague=None, year=None, leagueAttr=None, url=None, matches=None ):
             self.json = json
             self.countryName = countryName
             self.idLeague = idLeague
             self.matches = matches
             self.year = year
             self.leagueAttr = leagueAttr
+            self.matchPerDay = url
     def getJson(self):
         return self.json
     def setJson(self, json):
@@ -39,3 +41,17 @@ class Liga:
         return self.leagueAttr
     def setLeagueAttr(self, leagueAttr):
         self.leagueAttr = leagueAttr
+    def setUrlMatchPerDay(self):
+        url = self.getUrlMatchPerDay()
+        hour = self.getToday()
+        totalUrl = url+hour
+        final = str(totalUrl)
+        self.matchPerDay = final
+    def getUrlMatchPerDay(self):
+        return self.matchPerDay
+    def getToday(self):
+        return "{:%Y-%m-%d}".format(datetime.now())
+    def setmatchPerDay(self, url):
+        self.matchPerDay = url
+    def getmatchPerDay(self):
+        return self.matchPerDay

@@ -9,7 +9,6 @@ import requests
 # API server
 
 
-
 class Fulbacho(Client):
     def __init__(self, test=False, timeout=30):
         server = Server()
@@ -51,6 +50,9 @@ class Fulbacho(Client):
         pathNameKey  = config['FULBACHO']['PATHNAMEKEY']
         id_league = config['FULBACHO']['PATHNAMEKEY']
         year_league = config['FULBACHO']['YEAR']
+        matchQueryDay = config['FULBACHO']['DAILYMATCHQUERY']
+        matchquery = self.getCustomUrl(matchQueryDay)
+        self.setDailyMatchQuery(matchQueryDay)
         result = Client.check_keys(envOsVar, fileNameKey, pathNameKey)
         idList = []
         nameList = []
@@ -93,7 +95,8 @@ class Fulbacho(Client):
                 countryName = id[item]
                 idLeague = item
                 leagueAttr = self.getLeaguesAttributes(countryName, idLeague)
-                self.leagues.append(FulbachoLiga(urlLeague, countryName, idLeague, year, leagueAttr))
+                url = self.getDailyMatchQuery()
+                self.leagues.append(FulbachoLiga(urlLeague, countryName, idLeague, year, leagueAttr, url))
         return True
     def getCustomUrl(self, query):
         base_url = self.server.getUrl()
@@ -192,8 +195,8 @@ class Fulbacho(Client):
 
 
 class FulbachoLiga(Liga):
-    def __init__(self, json=None, countryName=None, idLeague=None,  year=None, leagueAttr=None, matches=None,):
-        Liga.__init__(self, json, countryName, idLeague, year, leagueAttr )
+    def __init__(self, json=None, countryName=None, idLeague=None,  year=None, leagueAttr=None,url=None, matches=None ):
+        Liga.__init__(self, json, countryName, idLeague, year, leagueAttr, url)
     def getCurrentMatches(self):
         return self.getLeagueAttr()['current_round']
     def getTotalMatches(self):

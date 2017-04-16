@@ -56,6 +56,10 @@ Go to test directory and run
 
 * Function get_url_status neet to be checked because one previous error on the api was saved in headers of response and faill all.
 
+* Show all matches from today, a method create the url for list all matches of current day.
+
+* Use the previous method in order to show all matched for today of a specific league loaded in the json classes
+
 --- TO INTEGRATE WITH BOT ---
 
 * Make a function to show all data of a specific League

@@ -1,5 +1,6 @@
 from .common import log_message, log_error
 import os, requests
+
 class Server:
 	def __init__(self, protocol=None, host=None, version=None ):
 		if protocol is None and host is None:
@@ -40,6 +41,7 @@ class Client(object):
 		self.apiquery = ''
 		self.apitoken = ''
 		self.leagues = []
+		self.dailyMatchQuery = ''
 	def get_url_status(url):
 		"""Handles api.football-data.org requests
 		try:
@@ -93,6 +95,10 @@ class Client(object):
 		self.apitoken = apitoken
 	def getApiToken(self):
 		return self.apitoken
+	def setDailyMatchQuery(self, apiquery):
+		self.dailyMatchQuery = apiquery
+	def getDailyMatchQuery(self):
+		return self.dailyMatchQuery
 
 #	def reloadConfig(pathFileName=None, fileName=None):
 #		config = configparser.ConfigParser()

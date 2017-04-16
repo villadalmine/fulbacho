@@ -19,14 +19,14 @@ def configure( directory=None ):
     config['LEAGUES'] = { 'Argentina': '192', 'Chile': '49', 'am': '113', 'Uruguay': '46', 'Argentina*': '675'}
     if directory is None:
         cwd = os.getcwd()
-        config['FULBACHO'] = { 'APIQUERY': '&format=json&req=categories&filter=leagues&country=ar', 'ENVOSVAR': 'FULBACHO_API_TOKEN', 'FILENAMEKEY': '.env', 'PATHNAMEKEY': cwd, 'YEAR': '2017'}
+        config['FULBACHO'] = { 'APIQUERY': '&format=json&req=categories&filter=leagues&country=ar', 'ENVOSVAR': 'FULBACHO_API_TOKEN', 'FILENAMEKEY': '.env', 'PATHNAMEKEY': cwd, 'YEAR': '2017', 'DAILYMATCHQUERY': '&tz=America/BuenosAires&format=&req=matchsday&date='}
         with open(cwd+'/fulbacho.ini', 'w') as configfile:
             config.write(configfile)
     else:
         home = os.path.dirname(directory)
         real_path = "fulbacho.ini"
         abs_file_path = os.path.join(home, real_path)
-        config['FULBACHO'] = { 'APIQUERY': '&format=json&req=categories&filter=leagues&country=ar', 'ENVOSVAR': 'FULBACHO_API_TOKEN', 'FILENAMEKEY': '.env', 'PATHNAMEKEY': directory , 'YEAR': '2017'}
+        config['FULBACHO'] = { 'APIQUERY': '&format=json&req=categories&filter=leagues&country=ar', 'ENVOSVAR': 'FULBACHO_API_TOKEN', 'FILENAMEKEY': '.env', 'PATHNAMEKEY': directory , 'YEAR': '2017', 'DAILYMATCHQUERY': '&tz=America/BuenosAires&format=&req=matchsday&date='}
         with open(abs_file_path, 'w') as configfile:
             config.write(configfile)
     return config
